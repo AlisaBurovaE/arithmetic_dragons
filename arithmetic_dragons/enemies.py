@@ -64,8 +64,63 @@ class BlackDragon(Dragon):
         self.set_answer(x * y)
         return self.__quest
 
+class Troll(Enemy):
+    def set_answer(self, answer):
+        self.__answer = answer
+
+    def check_answer(self, answer):
+        return answer == self.__answer
+
+class MountainTroll(Troll):
+    def __init__(self):
+        self._health = 150
+        self._attack = 15
+        self._type = 'горный'
+    def question(self):
+        x = randint(1,100)
+        self.__quest = 'Является ли' + str(x) + 'простым числом?'
+        def func_for_mountaintroll(i):
+            k = 0
+            for j in range(2, i // 2+1):
+                if (i % j == 0):
+                    k += 1
+            if (k <= 0):
+                return True
+            else:
+                return False
+        if func_for_mountaintroll(x):
+            self.set_answer('Да')
+        else:
+            self.set_answer('Нет')
+        return self.__quest
+
+class CaveTroll(Troll):
+    def __init__(self):
+        self._health = 150
+        self._attack = 15
+        self._type = 'пещерный'
+    def question(self):
+        x = randint(1,100)
+        self.__quest = 'Разложите' + str(x) + 'на множители'
+        def func_for_cavetroll(i):
+            lst = list()
+            d = 2
+            while d * d <= i:
+                if i % d == 0:
+                    lst.append(d)
+                    i //= d
+                else:
+                    d += 1
+            if i > 1:
+                lst.append(i)
+            return lst
+        self.set_answer(",".join(lst))
+        return self.__quest
+        
+
+    
 
 
-#FIXME: описаны классы RedDragon и BlackDragon
-# красный дракон учит вычитанию, а чёрный -- умножению.
+#FIXME: описаны классы RedDragon и BlackDragon, а также Mountain Troll и CaveTroll
+# красный дракон учит вычитанию, а чёрный -- умножению, горный тролль - проверке числа на простоту, пещерный - разложению на множители
 
