@@ -17,6 +17,16 @@ def generate_dragon_list(enemy_number):
     enemy_list = [generate_random_enemy() for i in range(enemy_number)]
     return enemy_list
 
+def generate_dragon_list(enemy_number):
+    enemy_list = [generate_random_enemy() for i in range(enemy_number)]
+    return enemy_list
+
+
+def generate_troll_list(enemy_number):
+    enemy_list = [generate_random_enemy() for i in range(enemy_number)]
+    return enemy_list
+
+
 
 class Dragon(Enemy):
     def set_answer(self, answer):
